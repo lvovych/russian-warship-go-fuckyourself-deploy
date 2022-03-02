@@ -1,0 +1,22 @@
+---
+- name: Create pro directory
+  file:
+    path: /opt/fuck
+    state: directory
+  register: dir_created
+
+- name: copy Docker Compose files
+  copy:
+    src: files/docker-compose.yml
+    dest: /opt/fuck/docker-compose.yml
+  when: dir_created
+
+- name: deploy Docker Compose stack
+  docker_compose:
+    project_src: /opt/fuck/
+    build: no
+  register: fucking
+
+- name: Flush handlers
+  meta: flush_handlers
+

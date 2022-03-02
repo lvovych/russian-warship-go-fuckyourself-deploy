@@ -1,0 +1,5 @@
+version: "3.5"
+services:
+  fucking:
+    image: lvinni/russian-warship-go-fuckyourself
+    container_name: russian-warship-go-fuckyourself

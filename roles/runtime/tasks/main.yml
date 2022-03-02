@@ -1,0 +1,52 @@
+---
+- name: Uninstall Docker old versions
+  apt:
+    name:
+      - docker
+      - docker-engine
+      - docker.io
+      - containerd
+      - runc
+      - docker-compose
+    state: absent
+  notify:
+    - Refresh APT cache
+
+- name: Install Docker dependencies
+  apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg-agent
+      - software-properties-common
+
+- name: Add Docker official GPG key
+  apt_key:
+    url: https://download.docker.com/linux/debian/gpg
+
+- name: Set up Docker APT repository
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/debian buster stable
+
+- name: Install Docker engine
+  apt:
+    name:
+      - docker-ce 
+      - docker-ce-cli
+      - containerd.io
+      - docker-compose
+
+# - name: Check Docker systemd directory
+#   stat:
+#    path: /etc/systemd/system/docker.service.d
+#   register: runtime_docker_systemd
+
+# - name: Create Docker systemd directory
+#   file:
+#     path: /etc/systemd/system/docker.service.d
+#     state: directory
+#   when: runtime_docker_systemd.stat.exists == false
+
+- name: Flush handlers
+  meta: flush_handlers

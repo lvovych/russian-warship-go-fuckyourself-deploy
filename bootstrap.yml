@@ -1,0 +1,11 @@
+---
+- hosts:
+    - all
+  roles:
+    - role: runtime
+      tags:
+        - runtime
+    - role: bot
+      tags:
+        - bot
+
