@@ -11,6 +11,12 @@
     dest: /opt/fuck/docker-compose.yml
   when: dir_created
 
+- name: Stop all services
+  docker_compose:
+    project_src: /opt/fuck/
+    stopped: yes
+  register: docker_stopped
+
 - name: deploy Docker Compose stack
   docker_compose:
     project_src: /opt/fuck/
