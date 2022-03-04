@@ -1,0 +1,6 @@
+---
+all:
+  hosts:
+%{ for index, ip in ip_address ~}
+    ${ip.ipv4_address}:
+%{ endfor ~}

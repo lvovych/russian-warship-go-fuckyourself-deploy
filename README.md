@@ -2,20 +2,22 @@
 
 ## Prerequisites
 
+- terraform
 - ansible
 
 ## How to use
 
+0. install terraform
 1. install ansible
 
 ```sh
-brew install ansible
+brew install terraform && brew install ansible
 ```
 
-2.Add all nessesary hosts into inventory.yml
-3.Update remote_user and ansible_user in ansible.cfg
+[SKIP] 2.Add all nessesary hosts into inventory.yml
+[Not impl] 3.Update remote_user and ansible_user in ansible.cfg
 4.Deploy
 
 ```sh
-make deploy
+terraform apply && make deploy
 ```
